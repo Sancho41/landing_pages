@@ -1,0 +1,154 @@
+.nav {
+    background: var(--black);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    top:0 ;
+    min-height: 62px;
+}
+
+.nav h1 {
+    font-size: 1.8rem;
+}
+
+.nav__logo {
+    padding: .7rem;
+    text-transform: uppercase;
+}
+
+.nav__toggle {display: none;}
+
+.nav__toggle:checked ~ .nav__links {
+    height: 100%;
+}
+
+.nav__toggle__label{
+    width: calc(2rem + 40px);
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.nav__toggle:checked ~ .nav__toggle__label{
+    content: '';
+    position: absolute;
+    background: rgba(0, 0, 0, .6);
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+.nav__toggle__label span{
+    position: absolute;
+    background: var(--white);
+    width: 30px;
+    height: 3px;
+    top: 1.6rem;
+    left: 1rem;
+}
+
+
+.nav__toggle__label span::before,
+.nav__toggle__label span::after{
+    content: '';
+    position: absolute;
+    background: var(--white);
+    width: 30px;
+    height: 3px;
+    transform: translateY(-10px);
+}
+
+.nav__toggle__label span::after {transform: translateY(10px);}
+
+.nav__links {
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.nav__links ul {
+    list-style: none;
+    text-align: center;
+}
+
+.nav__links li {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.nav__links a {
+    width: 100%;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.5rem;
+    position: relative;
+    transition: var(--transition);
+}
+
+.nav__links a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: 0;
+    height: 2px;
+    background-color: var(--white);
+    transition: var(--transition);
+}
+
+.nav__links a:hover::before {
+    right: 0;
+}
+
+a.active {
+    color: var(--blue);
+}
+
+a.active::before {
+   background-color: var(--blue);
+}
+
+@media (min-width: 920px) {
+    .nav {
+        display: grid;
+        grid-template-columns: 1fr minmax(auto, 540px) minmax(auto, 540px) 1fr;
+        
+    }
+
+    .nav__logo {
+        grid-column: 2;
+    }
+
+    .nav__links {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    
+    .nav__links ul{
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;   
+        width: 100%;
+    }
+
+    .nav__links li {
+        width: auto;
+        margin: 0;   
+    }
+
+    .nav__links a {
+        font-size: 1rem;
+    }
+
+    .nav__toggle__label {
+        display: none;
+    }
+}
